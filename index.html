@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1D1A26">
+    <meta name="msapplication-navbutton-color" content="#1D1A26">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#1D1A26">
+	<meta name="viewport" content="width=device-width, user-scalable=no">
+    <title>Web Chat - UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin" rel="stylesheet">
+    <link href="css/general.css?v=1.0.3" rel="stylesheet">
+    <link href="css/header.css?v=1.0.12" rel="stylesheet">
+    <link href="css/message-area.css?v=1.0.5" rel="stylesheet">
+    <link href="css/footer.css?v=1.0.6" rel="stylesheet">
+    <link href="css/message.css?v=1.0.1" rel="stylesheet">
+    <link href="css/download.css?v=1.0.1" rel="stylesheet">
+    <script src="js/cdn/jquery.min.js"></script>
+    <script src="js/cdn/i18next.min.js"></script>
+    <script src="js/cdn/i18next-jquery.min.js"></script>
+    <script src="js/cdn/i18nextXHRBackend.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/dompurify@2.0.17/dist/purify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body data-i18n="[class]language-direction" class="ltr">
+    <div id="mainContainer" class="cx-container cx-hidden">
+        <div id="top-app">
+            <div class="cx-header">
+                <div id="arrow-leading-icon">
+                    <div id="arrow-icon-container">
+                        <div id="state-layer-arrow" class="cx-header-icon">
+                            <span id="arrow-icon"> </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cx-header-text">
+                    <div class="cx-header-title" data-i18n="title">Live Chat</div>
+                </div> 
+
+                <div id="delete-icon-trailing">
+                    <div id="delete-icon-trailing3">
+                        <div id="delete-icon-container">
+                            <div id="state-layer-delete" class="cx-header-icon">
+                                <span id="delete-icon"> </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="userForm" class="cx-user-form" style="display: none;">
+                <div class="form-header"></div>
+                <div class="form-content">
+                    <div class="form-control">
+                        <label class="form-label" for="txtUserName" data-i18n="user-form.name-label">Name / Surname:</label>
+                        <input class="form-input-text" id="txtUserName" type="text" data-i18n="[placeholder]user-form.name-placeholder" placeholder="Your Name" />
+                        <span id="userNameValidation" class="form-error" data-i18n="user-form.warning">Please enter your information correctly.</span>
+                    </div>
+                    <div class="form-control">
+                        <label class="form-label" for="txtEmail" data-i18n="user-form.email-label">E-Mail:</label>
+                        <input class="form-input-text" id="txtEmail" type="email" data-i18n="[placeholder]user-form.email-placeholder" placeholder="Your Email" />
+                        <span id="emailValidation" class="form-error" data-i18n="user-form.warning">Please enter your information correctly.</span>
+                    </div>
+                    <div class="form-control">
+                        <label class="form-label" for="txtStartMessage" data-i18n="user-form.message-label">Message:</label>
+                        <textarea class="form-input-textarea" id="txtStartMessage" data-i18n="[placeholder]user-form.message-placeholder"  placeholder="Your Message"></textarea>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <div class="other-sign-in"></div>
+                    <div class="start-button">
+                        <button id="btnSubmitForm" class="form-button" data-i18n="user-form.start-to-chat-button">START TO CHAT</button>
+                    </div>
+                </div>
+        </div>
+        <div id="cx-message-area" class="cx-message-area" >
+            <div class="cx-privacy-policy" data-i18n="[html]privacy-policy" style="display: none;">
+                You can use the link below to request a report which <br>will contain all personal information that we store for you. <br><a href="https://www.qi.iq/privacy-policy/">www.qi.iq/privacy-policy/</a>
+            </div>
+            <div id="cx-messages" class="cx-messages">
+                <div class="cx-message cx-message-system" style="display: none;">
+                    <div class="operator-message">
+                        <div class="cx-message-text">Görüşme başladı</div>
+                        <div class="cx-message-time">13:25</div>
+                    </div>
+                </div>
+                <div class="cx-message cx-message-agent">
+                    <div class="operator-message" style="display: none;">
+                        <div  id="operator-text" class="cx-message-text" >Hello, how can I help you?</div>
+                        <div class="cx-message-time" style="display: none;">13:26</div>
+                    </div>
+                </div>
+                <div class="cx-message cx-message-participant" style="display: none;">
+                    <div class="operator-message">
+                        <div class="cx-message-text">Merhaba, oturum açamıyorum. Yardımcı olabilir misiniz?</div>
+                        <div class="cx-message-time" style="display: none;">13:26</div>
+                    </div>
+                </div> 
+            </div>
+            <div class="footer-hidden-elements">
+                <div id="typing" class="cx-typing rtl-text" data-i18n="typing" style="display: none;">Typing...</div>
+                <div id="btnEmoji" class="cx-button cx-emoji-button" data-i18n="[title]emoji-button" title="Emoji" style="display: none;"></div>
+                <div id="uploading" class="cx-uploading rtl-text" data-i18n="upload-status.uploading" style="display: none;">Uploading...</div>
+                <form id="upload_form" class="rtl-text" enctype="multipart/form-data" style="display: none;">
+                    <input type="file" id="fileUpload" />
+                </form>
+            </div>
+            <p id="fileMessage" style="display: none; color: green;" data-i18n="file-upload-message"></p>
+            <div class="cx-message-footer">
+                <div class="footer-buttons">
+                    <div id="btnAttach" class="cx-button cx-attach-button" title="Attach">
+                        <!--<img src="img/attachvector.svg" alt="Attachment Icon" />-->
+                    </div>
+            
+                    <div class="footer-text-area">
+                        <textarea 
+                            type="text" 
+                            autocomplete="off" 
+                            id="txtMessage" 
+                            class="cx-message-input rtl-text" 
+                        ></textarea>
+                    </div>
+            
+                    <div id="btnSendMessage" class="cx-button cx-send-button" title="Send">
+                        <!--<img src="img/sendvector.svg" alt="Send Icon" />-->
+                    </div>
+                </div>    
+            </div>
+            
+        </div>   
+        <div id="surveyForm" class="cx-survey-form" style="display: none;">
+            <div class="form-header rtl-text" data-i18n="survey.title">How easy was it to resolve your issue with us today?</div>
+                <div class="form-content">
+                    <div class="form-control">
+                        <label class="form-label rtl-text" data-i18n="survey.rate-label">Rate this chat:</label>   
+                        <div class="radio-group">
+                            <input class="form-input-radio" id="chkRateGood" name="chkRate" value="good" type="radio" data-i18n="" /> 
+                            <label class="form-input-radio-label good" for="chkRateGood" data-i18n="survey.rate-good-label">Good</label>                        
+                            <input class="form-input-radio" id="chkRateBad" name="chkRate" value="bad" type="radio" data-i18n="" /> 
+                            <label class="form-input-radio-label bad" for="chkRateBad" data-i18n="survey.rate-bad-label">Bad</label>
+                        </div>                        
+                    </div>
+                    <div class="form-control">
+                        <label class="form-label rtl-text" for="txtSurveyMessage" data-i18n="survey.comment-label">Add a comment (optional):</label>
+                        <textarea class="form-input-textarea rtl-text" id="txtSurveyMessage" data-i18n="[placeholder]survey.comment-placeholder"  placeholder="Please write your message..."></textarea>
+                    </div>
+                </div>
+                <div class="form-footer">
+                    <div class="send-button">
+                        <button id="btnSendForm" class="form-button" data-i18n="survey.send-button">SEND</button>
+                    </div>
+                </div>
+        </div>   
+        <div id="surveyFeedback" class="cx-survey-feedback" style="display: none;">
+            <div class="cx-feedback-container rtl-text">
+                <div class="cx-feedback-title" data-i18n="survey.feedback.title">Thanks for your time!</div>
+                <div class="cx-feedback-description" data-i18n="survey.feedback.description">Your feedback will help us improve.</div>
+                <div class="cx-feedback-footer"><button id="btnSurveyFeedbackClose" class="cx-feedback-button" data-i18n="survey.feedback.close-button">CLOSE</button></div>
+            </div>
+        </div>
+    </div>
+    <div class="cx-modals rtl-text cx-hidden" >
+        <div class=" cx-modal cx-modal-exit cx-hidden">
+        <!--<img class="modal-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png">-->
+            <h3 class="modal-title" data-i18n="close-modal.title">End Conversation</h3>
+            <p class="modal-description" data-i18n="close-modal.message">The conversation will be ended. Do you want to continue the conversation?</p>
+            <button id="btnChatExitYes" class="modal-button" data-i18n="close-modal.ok-button">End Conversation</button>
+            <button id="btnChatExitNo" class="modal-button modal-button-active" data-i18n="close-modal.close-button">Continue Conversation</button>
+        </div>
+        <div class=" cx-modal cx-modal-nonauth cx-hidden">
+        <!--<img class="modal-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png">-->
+            <h3 class="modal-title" data-i18n="nonauth-modal.title">Ooops!</h3>
+            <p class="modal-description" data-i18n="nonauth-modal.message">An error occurred while connecting to chat. Please check your credentials and try again.</p>
+            <button class="modal-button modal-button-active" data-i18n="nonauth-modal.ok-button" onclick="uiWidgetRemove()">Thank you for your understanding.</button>
+        </div>
+        <div class=" cx-modal cx-modal-networkerror cx-hidden">
+        <!--<img class="modal-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828778.png">-->
+            <h3 class="modal-title" data-i18n="nonauth-modal.title">Ooops!</h3>
+            <p class="modal-description" data-i18n="nonauth-modal.message">An error occured while connecting to the chat. Please check your connection settings and try again.</p>
+            <button class="modal-button modal-button-active" data-i18n="nonauth-modal.ok-button" onclick="uiWidgetRemove()">Thank you for your understanding.</button>
+        </div>
+    </div>
+
+    <script src="js/base64.js?v=1.0.2"></script>
+    <script src="js/parameter.js?v=1.0.4"></script>
+    <script src="js/authentication.js?v=1.0.3"></script>
+    <script src="js/cookie.js?v=1.0.2"></script>
+    <script src="js/cxbotcontroller.js?v=1.0.6"></script>
+    <script src="js/cammon.js?v=1.0.23"></script>
+    <script src="js/ui.js?v=1.0.27"></script>
+</body>
+</html>

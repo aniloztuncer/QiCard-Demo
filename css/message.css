@@ -1,0 +1,36 @@
+.operator-message{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 16px;
+    gap: 10px;
+
+    width: auto;
+    max-width: 75%;
+    height: auto;
+    left: 20px;
+    top: 129px;
+
+    background: #000000;
+    opacity: 0.8;
+    box-shadow: 0px 4px 16px rgba(20, 37, 61, 0.16);
+    border-radius: 8px 8px 8px 8px;
+
+}
+
+#operator-text{
+    width: auto;
+    height: auto;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: #FFFFFF;
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}

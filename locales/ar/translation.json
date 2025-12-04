@@ -1,0 +1,70 @@
+{
+        "language-name": "Arabic",
+        "language-direction": "rtl",
+        "title": "محادثة مباشرة",
+        "subtitle": "",
+        "minimize-button": "تصغير",
+        "close-button": "إنهاء المحادثة",
+        "privacy-policy": "You can use the link below to request a report which <br>will contain all personal information that we store for you. <br><a href='https://www.qi.iq/privacy-policy/' target='_blank'>www.qi.iq/privacy-policy/</a>",
+        "message-placeholder": "اكتب رسالتك...",
+        "typing": "يكتب...",
+        "upload-status": {
+            "uploading": "تحميل ملف...",
+            "uploaded": "نجح التحميل",
+            "max-file": "العدد الأقصى للملفات",
+            "max-size": "الحجم الأقصى للملف",
+            "no-format": "تنسيق الملف غير مدعوم",
+            "no-file": "لا يوجد ملف",
+            "error": "فشل تحميل الملف!"
+        },
+        "emoji-button": "إيموجي",
+        "attach-button": "مرفق",
+        "send-button": "إرسال",
+        "user-form": {
+            "name-label": "الإسم الأول/ اللقب:",
+            "name-placeholder": "إسمك",
+            "email-label": "عنوان البريد الإلكتروني:",
+            "email-placeholder": "بريدك الإلكتروني",
+            "message-label": "الرسالة:",
+            "message-placeholder": "رسالتك",
+            "start-to-chat-button": "ابدأ المحادثة",
+            "warning": ".يرجى التأكد من كتابة بياناتك الصحيحة"
+        },
+        "survey": {
+            "title": "هل تمكنت من الحصول على حل لمشكلتك بسهولة؟",
+            "rate-label": "قيّم هذه المحادثة:",
+            "rate-good-label": "جيّدة",
+            "rate-bad-label": "سيّئة",
+            "comment-label": "اكتب تعليقًا (اختياري):",
+            "comment-placeholder": "يرجى كتابة رسالتك...",
+            "send-button": "إرسال",
+            "feedback" : {
+                "title": "نشكر وقتك!",
+                "description": "تقييمك يساهم بتحسين الخدمة",
+                "close-button": "إغلاق"
+            }
+        },
+        "close-modal": {
+            "title": "إنهاء المحادثة",
+            "message": "ستُغلق هذه المحادثة، هل تود استكمالها؟",
+            "ok-button": "إنهاء المحادثة",
+            "close-button": "استكمال المحادثة"
+        },
+        "nonauth-modal": {
+            "title": "أوه!",
+            "message": "حدث خطأ أثناء إيصالك بموظف الخدمة. برجاء التأكد من بياناتك والمحاولة مجددًا.",
+            "ok-button": "نقدّر تفهّمك"
+        },
+        "networkerror-modal": {
+            "title": "أوه!",
+            "message": "حدث خطأ أثناء إيصالك بموظف الخدمة. برجاء التأكد من بياناتك والمحاولة مجددًا.",
+            "ok-button": "نقدّر تفهّمك"
+        },
+        "system-message": {
+            "agent-connected": "موظّف الخدمة نشط",
+            "agent-disconnected": "انقطع الاتصال بموظف الخدمة",
+            "agent-start-message": "مرحبا، بشنو أساعدك؟",
+            "chat-started": "بدأت المحادثة",
+            "chat-ended": "انتهت المحادثة"
+        }
+}
