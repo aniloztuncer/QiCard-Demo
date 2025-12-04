@@ -442,7 +442,7 @@ function streamOnMessage(event){
                 clearCookies();
             }
         }
-        else if (data.body.type == "Text") { // Gelen mesaj
+        else if (data.body.type == "Text" || data.body.type == "Structured") { // Gelen mesaj
             forConId = data.body.id; // Bir görüşme olduğuna dair id bilgisi
             if (data.body.direction == "Outbound" && data.body.text) { // Agent mesajı
                 addNewMessage("agent", linkify(data.body.text), timeFormatter(data.body.channel.time));
@@ -636,3 +636,4 @@ document.addEventListener("visibilitychange", function() {
     }
 
 });
+
