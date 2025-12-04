@@ -62,63 +62,6 @@ function sendMessage(message, isHidden = false) {
     if (!isHidden) {
         addNewMessage("participant", linkify(cleanMessage), timeFormatter(currentDate)); // Müşterinin mesajını ekle
     }
-
-    sendBotMessage(parameters.name, parameters.uuid, parameters.name, parameters.name, cleanMessage)
-        .then(botResponse => {
-            if (botResponse != null && botResponse.status === 1) { // Bot ile görüşme devam ediyorsa        
-                var _currentDate = new Date();
-                addNewMessage("agent", linkify(botResponse.response), timeFormatter(_currentDate)); // Botun son mesajını müşteriye gönder
-                return; // Agent a bu mesajı gönderme
-            }
-            else if (botResponse != null && botResponse.status === 2 && botResponse.conversation_summary != null && botResponse.conversation_summary != "") { // Bot ile görüşme sonlandıysa ve agent a yönlendirme varsa
-                var _currentDate = new Date();
-                var _botRedirectMessage = `هسه راح أحولك على زميلي المختص، يرجى الانتظار للحظة. شكرًا جزيلاً على صبرك وتفهمك. 
-You are being transferred to a senior colleague. Please hold on for a moment. We appreciate your patience.`;
-                addNewMessage("agent", linkify(_botRedirectMessage), timeFormatter(_currentDate)); // Agent a yönlendirme mesajı müşteriye gönder
-                cleanMessage = botResponse.conversation_summary; // Botun özet mesajını agent a gönder
-            }
-
-            if(!webSocket) {
-                startNewChat(message);
-            }
-            else {        
-        
-                var sendMessageData = {
-                    "action": "onMessage",
-                    "token": token,
-                    "message": {
-                        "type": "Text",
-                        "text": cleanMessage,
-                        "channel": {
-                            "metadata": {
-                                "customAttributes": parameters 
-                            }
-                        }
-                    }
-                } 
-
-                if(cleanMessage.length > 4000) {
-                    const splitChunks = splitText(cleanMessage);
-                    splitChunks.forEach((element, index) => {
-                        sendMessageData.message.text = element;
-                        setTimeout(() => {
-                            webSocket.send(JSON.stringify(sendMessageData));
-                        }
-                        , index * 500); // Her mesajı 0,5 saniye arayla gönder
-                    });
-                }
-                else {
-                    webSocket.send(JSON.stringify(sendMessageData));
-                } 
-           
-                /*setTimeout(() => {
-                    var currentDate = new Date();
-                    var message = $.t("system-message.chat-started");
-                    addNewMessage("system", message, timeFormatter(currentDate));
-                }, 500);*/
-            }
-        })
-        .catch(() => {
             // Agent a mesaj gönder
 			if(!webSocket) {
 				startNewChat(message);
@@ -143,15 +86,9 @@ You are being transferred to a senior colleague. Please hold on for a moment. We
 				} 
 
 				webSocket.send(JSON.stringify(sendMessageData));
-		   
-				/*setTimeout(() => {
-					var currentDate = new Date();
-					var message = $.t("system-message.chat-started");
-					addNewMessage("system", message, timeFormatter(currentDate));
-				}, 500);*/
 			}
-        });
 }
+
 var attachmentData = {
     attachmentId: null,
     xAmzTagging: null,
@@ -697,4 +634,5 @@ document.addEventListener("visibilitychange", function() {
             startConnection(wssUrl);
         }
     }
+
 });
