@@ -13,7 +13,7 @@ function convertYouTubeToEmbed(messageText) {
     if (!messageText) return messageText;
 
     // YouTube tüm URL formatlarını yakala
-    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?[^ ]*v=|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+    const youtubeRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/embed\?[^ ]*v=|youtu\.be\/)([A-Za-z0-9_-]{11})/;
 
     const match = messageText.match(youtubeRegex);
 
@@ -742,4 +742,5 @@ msgInput.addEventListener('blur', () => {
             mainContainer.style.height = `100%`
         }, 200)
     }
+
 })
